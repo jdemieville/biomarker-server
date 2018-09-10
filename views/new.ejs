@@ -1,0 +1,30 @@
+<% include ./partials/header %>
+
+<form class="ui form" action="/biomarkers" method="POST">
+    <div class="field">
+        <label>Marker</label>
+        <input type="text" name="bio[marker]" placeholder="Marker">
+    </div>
+    <div class="field">
+        <label>Process</label>
+        <input type="text" name="bio[process]" placeholder="Process">
+    </div>
+    <span></span>
+    <div class="field" id="plusProcess">
+        <div class="circular ui icon button">
+            <i class="icon plus"></i>
+        </div>
+    </div>
+    
+    <div>
+        <button class="ui teal medium button">Submit</button>
+    </div>
+    
+</form>
+
+<script>
+    $( "body" ).on( "click", "i", function() {
+        $(`<div class="field"><label>Process</label><input type="text" name="bio[process]" placeholder="Process"></div>`).appendTo("span");
+    })
+</script>
+<% include ./partials/footer %>

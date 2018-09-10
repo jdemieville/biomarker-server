@@ -1,0 +1,37 @@
+<% include ./partials/header %>
+<div class="ui huge header">Edit <%= marker.marker %></div>
+<form class="ui form" action="/biomarkers/<%= marker._id %>?_method=PUT" method="POST">
+    <div class="field">
+        <label>Marker</label>
+        <input type="text" name="bio[marker]" value="<%= marker.marker %>">
+    </div>
+    <% for(var num = marker.processes.length; num >= 0; num--) { %>
+        <% if(marker.processes[num] !== undefined) { %>
+            <div class="field">
+                <label>Process</label>
+                <input type="text" name="bio[process]" value="<%= marker.processes[num] %>">
+            </div>
+        <% } %>
+    <% } %>
+    <span></span>
+    <div class="field" id="plusProcess">
+        <div class="circular ui icon button">
+            <i class="icon plus"></i>
+        </div>
+    </div>
+    <div>
+        <button class="ui teal medium button">Submit</button>
+    </div>
+</form>
+
+<form class="delete" action="/biomarkers/<%= marker.id %>?_method=DELETE" method="POST">
+    <button class="negative ui button">Delete</button>
+</form>
+
+<script>
+    $( "body" ).on( "click", "i", function() {
+        $(`<div class="field"><label>Process</label><input type="text" name="bio[process]" placeholder="Process"></div>`).appendTo("span");
+    })
+</script>
+
+<% include ./partials/footer %>

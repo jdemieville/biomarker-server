@@ -1,0 +1,14 @@
+body {
+    background-color: #F2F3F4;
+    margin: 5%;
+}
+
+div, h1, input {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#pad {
+    float: right;
+    margin-left: 25px;
+    margin-top: -28px;
+}

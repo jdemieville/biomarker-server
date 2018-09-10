@@ -1,0 +1,27 @@
+<% include ./partials/header %>
+
+<div class="ui main text container">
+    <div class="ui huge header">Biomarkers</div>
+    <div class="ui celled list">
+        <% allBiomarkers.forEach((biomarker) => { %>
+            <div class="item">
+                <button class="circular ui icon button">
+                    <a href="/biomarkers/<%= biomarker._id %>/edit"><i class="dna icon"></i></a>
+                </button>
+                <div class="content">
+                    <span id="pad">
+                        <ol class="ui list">
+                            <div class="header"><%= biomarker.marker %></div>
+                            <% biomarker.processes.forEach((process) => { %>
+                                <li value="-">
+                                    <%= process %>
+                                </li>
+                            <% }) %>
+                        </ol>
+                    </span>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+<% include ./partials/footer %>

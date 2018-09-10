@@ -1,0 +1,32 @@
+<head>
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"></link>
+   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="/index.css"></link>
+</head>
+<body>
+    <div class="ui middle aligned center aligned grid">
+        <div class="column">
+            <h1 class="ui purple image header">
+                <i class="flask icon"></i>
+                <div class="content">Biomarker Admin Login</div>
+            </h1>
+        <form class="ui large form" action="/login" method="post">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="username" placeholder="User Name">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+                <button class="ui fluid large purple submit button">Login</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</body>
