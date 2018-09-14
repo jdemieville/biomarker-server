@@ -66,7 +66,10 @@ app.get('/logout', (req, res) => {
 //api route
 app.get('/api/biomarkers', (req, res) => {
    Biomarker.find({}, (err, allBiomarkers) => {
-       err ? res.redirect('/') : res.json(allBiomarkers);
+       err ? (
+           console.log(err),
+           res.json({error: "An error has occurred; sorry about that!"})
+           ) : res.json(allBiomarkers);
    });
 });
 //end of api route
@@ -76,7 +79,10 @@ app.get('/api/biomarkers', (req, res) => {
 //view all biomarkers
 app.get('/biomarkers', middleware.isLoggedIn, (req, res) => {
   Biomarker.find({}, (err, allBiomarkers) => {
-      err ? res.redirect('/') : res.render("biomarkers", {allBiomarkers:allBiomarkers});
+      err ? (
+          console.log(err),
+          res.redirect('/')
+          ) : res.render("biomarkers", {allBiomarkers:allBiomarkers});
   }); 
 });
 
@@ -95,14 +101,20 @@ app.post('/biomarkers', middleware.isLoggedIn, (req, res) => {
     }
     newBiomarker = {marker: req.body.bio.marker, processes: processesArr};
     Biomarker.create(newBiomarker, (err, newBio) => {
-       err ? res.redirect('/biomarkers') : res.redirect('/biomarkers');
+       err ? (
+           console.log(err),
+           res.redirect('/biomarkers')
+           ) : res.redirect('/biomarkers');
     });
 });
 
 //find selected biomarker (selected by clicking dna icon) and load edit page
 app.get('/biomarkers/:id/edit', middleware.isLoggedIn, (req, res) => {
     Biomarker.findById(req.params.id, (err, marker) => {
-        err ? res.redirect('/biomarkers') : res.render("edit", {marker:marker});
+        err ? (
+            console.log(err),
+            res.redirect('/biomarkers')
+            ) : res.render("edit", {marker:marker});
     });
 });
 
@@ -119,14 +131,20 @@ app.put('/biomarkers/:id', middleware.isLoggedIn, (req, res) => {
     }
     updateBiomarker = {marker: req.body.bio.marker, processes: processesArr};
     Biomarker.findByIdAndUpdate(req.params.id, updateBiomarker, (err, updatedBio) => {
-        err ? res.redirect('/biomarkers') : res.redirect(`/biomarkers/${req.params.id}/edit`);
+        err ? (
+            console.log(err),
+            res.redirect('/biomarkers')
+        ) : res.redirect(`/biomarkers/${req.params.id}/edit`);
     });
 });
 
 //remove selected biomarker
 app.delete('/biomarkers/:id', middleware.isLoggedIn, (req, res) => {
    Biomarker.findByIdAndRemove(req.params.id, (err) => {
-       err ? res.redirect('/biomarkers') : res.redirect('/biomarkers');
+       err ? (
+           console.log(err),
+           res.redirect('/biomarkers')
+           ) : res.redirect('/biomarkers');
    }); 
 });
 //end of biomarker REST routes
